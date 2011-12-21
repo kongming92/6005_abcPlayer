@@ -1,0 +1,316 @@
+\documentclass[12pt]{article}
+
+%% Include packages
+%%\usepackage{times}
+\usepackage[margin=1in,letterpaper,portrait]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage[pdftex]{graphicx}
+\usepackage{listings}
+\usepackage{eucal}
+
+%% Modify these variables
+\newcommand{\student}{Alex Chernyakhovsky, Charles Liu, Lauren Stephens}
+\newcommand{\studentemail}{achernya, cliu2014, lhs}
+\newcommand{\course}{6.005}
+\newcommand{\pset}{Project 1 Team Contract}
+
+%% DO NOT MODIFY THIS SECTION
+
+\fancyhf{}
+\lhead{\course \\ \pset}
+\rhead{\student \\ \studentemail}
+\cfoot{\thepage}
+\addtolength{\headheight}{30pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\pagestyle{fancy}
+
+\newenvironment{problemset}{\begin{itemize}}{\end{itemize}}
+\newenvironment{problem}[1]{\item #1\\}{}
+
+%% END DO NOT MODIFY THIS SECTION
+
+%% PUT MACROS HERE
+\newcommand{\bra}{\left\langle}
+\newcommand{\ket}{\right\rangle}
+%%
+
+\begin{document}
+
+% Set up document title
+\title{\pset}
+\author{\student}
+\date{}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Goals}
+\begin{itemize}
+\item What are the goals of the team? 
+
+  The goals of the team are three-fold: the first is to attain an A on
+  the assignment.  The second is to create a working, tested abc
+  player that is simple to use (and possibly can be shown off to
+  non-MIT friends who should be duly impressed).  The third goal is to
+  work together and have fun as a team.  While we are interested in
+  the end product, we also want to ensure that everybody contributed
+  and had a good attitude.  We want the experience a positive one.
+
+\item What are your personal goals for this assignment?
+
+  \begin{itemize}
+  \item Lauren Stephens: \\
+    I second the team goals, and want to add that I will make an
+    emphasis to pull my weight on the team because while I have not
+    worked with Charles much, I have worked with Alex and understand
+    he is currently more technically advanced than I am.
+  \item Alex Chernyakhovsky: \\
+    In addition to the team goals, I look forward to working with
+    Lauren and Charles, in which I hope to work on my technical and
+    non-technical communication skills, to allow the team to work
+    coherently.  I also am interested in working on the design of the
+    system itself, focusing on modularization and abstraction, that
+    will allow the team to work independently initially, and then
+    focus on the final integration as we approach completion.
+  \item Charles Liu: \\
+    In addition to all the team goals, one of my goals is to develop
+    my abilities at working on a software project in a team. I'd like
+    to be a good team member by carrying my own weight, providing good
+    input to the overall picture while knowing when other people have
+    better ideas, and ensuring that the finished project is of high
+    quality. I'd like to take advantage of the opportunity to learn
+    how to code better by learning from Lauren and Alex. Finally, this
+    project relates to something that interests me, so I'd like to
+    have fun with it!
+  \end{itemize}
+
+\item What kind of obstacles might you encounter in reaching your
+  goals?
+
+  The first obstacle is in design determination.  We want to ensure
+  that each person agrees with and supports the overall design
+  decisions and do not want to spend time trying to implement two
+  different solutions or continually arguing about which architecture
+  to use.  We will use a semi-democratic system to determine between
+  conflicting designs presented by team members.  If two (or three)
+  team members cannot agree on design patterns that bridge more than
+  one person's work, we will first vote on which design pattern to
+  use.  If the losing party is unhappy with the result, he or she has
+  the right to ask for outside moderation.  In this case we will go to
+  our TA and make our respective cases for each design pattern and let
+  our TA help us decide.
+
+  The second obstacle is in actual implementation.  We will assign the
+  implementation of code to individuals however each individual should
+  feel free to seek help from other group members.  If the whole group
+  cannot figure out a particular problem that arises, we once again
+  turn to our magic fixer: the TA.
+
+  The third obstacle is time.  As a group we will set deadlines for
+  having pieces of the work done.  If an individual cannot meet a
+  deadline, they will be expected to inform the group early enough
+  that we can decide what needs to be done and how to reassign work if
+  necessary.  If a group member is consistently late we may resort to
+  the procedures for one team member doing less work, but not without
+  ample warnings.
+
+\item What happens if all of you decide you want to get an A grade,
+  but because of time constraints, one person decides that a B will be
+  acceptable?
+
+  In this case, a meeting will be held to determine if the remaining
+  team members still want to achieve the original goals.  If they do
+  and the third person is not contributing towards these goals, see
+  next section for procedures.
+
+\item Is it acceptable for one or two team members to do more work
+  than the others in order to get the team an A?
+
+  It is not acceptable for it to be excessive (work is very hard to
+  divide exactly evenly).  It is acceptable for team members to
+  specialize in what they do best, however everyone should try to work
+  on at least a little bit of each stage.  It is also acceptable for
+  some team members to have to email, nag, badger, and peer pressure
+  another team member to do their part should a team member decide
+  they do not want to do their work.  Ultimately if all social
+  pressure fails or a team member has extenuating circumstances that
+  prevent them from working on the project (my parents died, I am
+  sick, etc.) the team will meet with a TA to discuss this.  If no
+  resolution can be made that is satisfactory to all team members, a
+  note will be attached to the final project indicating the respective
+  amounts of work done.  It will ideally be signed by all team
+  members.  Also the reflections section of the project will contain
+  similar indications.  Clearly work is hard to divide exactly evenly,
+  but we want to make sure that it is not overly unfair.
+\end{itemize}
+
+\section{Meeting Norms}
+\begin{itemize}
+\item Do you have a preference for when meetings will be held? Do you
+  have a preference for where they should be held?
+
+  \begin{itemize}
+  \item Lauren:\\
+    I prefer meetings on the sixth floor of Simmons (Alex and I live
+    next to each other) however would be willing to accommodate
+    meetings elsewhere on the MIT campus.  I have commitments to crew
+    and classes and prefer the meeting not be held during crew
+    practice (5-7) or class hours (with the exception of 6.005 time)
+    unless I have given prior approval.
+  \item Alex:\\
+    I agree with Lauren that the sixth floor of Simmons is very
+    convenient, and would prefer meetings there.  However, I recognize
+    that Charles may have other obligations that make Simmons an
+    inappropriate meeting place, and suggest the fifth floor of the
+    Student Center, either in the Athena Cluster or SIPB Office as an
+    alternative location. Other than the 6.005 class time, I cannot
+    meet before 5pm.
+  \end{itemize}
+
+\item How will you use the in class time?
+
+  We may use the in class time for team meetings as it would allow us
+  to meet together with minimal schedule disruption.  If we are not
+  meeting as a team, individual members are free to use the time as
+  they see fit as long as they have fulfilled their obligations to the
+  group
+
+\item How often do you think the team will need to meet outside of
+  class? How long do you anticipate meetings will be?
+
+  As a team we will meet as often as necessary but hopefully at least
+  every other day.  The meetings will probably be about 30 minutes of
+  actual work and about 30 minutes of small-chat and bubble tea and
+  hanging around. Obviously, team members may skip the unimportant 30
+  minutes if they need to.
+
+\item Will it be okay for team members to eat during meetings?
+
+  Yes, in fact Lauren is expecting bubble tea at all meetings held in
+  Simmons (thanks Alex!)
+
+\item How will you record and distribute the minutes and action lists
+  produced by each meeting?
+
+  Lauren has volunteered to be the secretary and will record the
+  minutes and actions lists in a Google document with the help of Alex
+  and Charles.  This Google document will be shared among all team
+  members to remind them of what went on in the meeting.
+
+\end{itemize}
+
+\section{Work Norms}
+\begin{itemize}
+\item How much time per week do you anticipate it will take to make
+  the project successful?
+
+  We expect the project to take about 15 hours a week per team member.
+  This is a rough estimate and may vary on skill, how hard the project
+  actually is, and how much time is spent actually working.
+
+\item How will work be distributed?
+
+  The work will be distributed first on a volunteer basis.  In a
+  perfect world people will volunteer for their fair share and we
+  don't have to worry.  In absence of a volunteer for a particular
+  part, we will have a rotating system with the order based on a dice
+  roll.  If someone does not seem to be doing a fair amount of work,
+  the issue will be raised and suggestions for a better distribution
+  will be voted on democratically finally we have magic TA moderation.
+
+\item How will deadlines be set?
+
+  Deadlines will be set both by the individual doing the work (``I can
+  get it done by...'') and by the group (``we need it done by...'')
+  If no resolution can be reached, we will try to put two people on
+  the assignment or offer help.
+
+\item How will you decide who should do which tasks?
+
+  Volunteer, rotating, democratic, magic TA.  If volunteering fails we
+  will use the rotating system.  If the rotating system fails or work
+  is not being distributed evenly, we will use a democratic system.
+  If that fails we get our magic TA.  Also testing, implementing, and
+  reviewing will not be done by the same person for a given method.
+
+\item Where will you record who is responsible for which tasks?
+
+  Recorded on a shared Google Docs.
+
+\item What will happen if someone does not follow through on a
+  commitment (e.g., missing a deadline, not showing up to meetings)?
+
+  We will first try to resolve the dispute internally so that all
+  group members are satisfied work is being done equally and mostly
+  equally well.  If this fails we will try to offer a compromise
+  "make-up work" (i.e. you missed a meeting, you take notes at the
+  next; you missed a deadline you agree to do more work for the next
+  deadline).  If all else fails resort to procedures for one team
+  member doing less work.
+
+\item How will the work be reviewed?
+
+  For each method we will split up the implementation, testing, and
+  review.  The implementer will write the code and state that it is
+  good (possibly performing their own simple checks).  The tester will
+  write full tests for the method such that if the method passes their
+  test, they are satisfied the method works.  Finally the reviewer
+  will read over both the code and the tests to confirm.
+
+\item What happens if people have different opinions on the quality of
+  the work?
+
+  Try to resolve internally be debating the quality of the work.  If
+  no consensus can be reached take a democratic vote.  If all this
+  fails, then bring in the magic TA,
+
+\item What will you do if one or more team members are not doing their
+  share of the work?
+
+  Team members may have to email, nag, badger, and peer pressure
+  another team member to do their part should a team member decide
+  they do not want to do their work.  Ultimately if all social
+  pressure fails or a team member has extenuating circumstances that
+  prevent them from working on the project (my parents died, I am
+  sick, etc.) the team will meet with a TA to discuss this.  If no
+  resolution can be made that is satisfactory to all team members, a
+  note will be attached to the final project indicating the respective
+  amounts of work done.  It will ideally be signed by all team
+  members.  Also the reflections section of the project will contain
+  similar indications.
+
+
+\item How will you deal with different work habits of individual team
+  members (e.g., some people like to get assignments done as early as
+  possible; others like to work under the pressure of a deadline)?
+
+  We expect team members to meet all group---set deadlines, other than
+  that, they can work as they please.
+
+\end{itemize}
+
+\section{Decision Making}
+\begin{itemize}
+\item Do you need consensus
+  (100\% approval of all team members) before making a decision?
+
+  We need at least two team members to make a decision.  If the third
+  team member believes that this is the absolutely wrong decision, the
+  third team member has the right to demand magic TA moderation.  We
+  hope this will not have to happen.
+
+\item What will you do if one of you fixates on a particular idea?
+
+  Again, if one person is extremely unhappy will the group decision,
+  he or she can demand the group meet with the TA.  All group members
+  will then abide by that decision unless all three unanimously
+  disagree
+
+\end{itemize}
+
+\end{document}
+

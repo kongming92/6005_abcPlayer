@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/6.005/fa11/!svn/ver/14248/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast
+END
+MusicalElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/6.005/fa11/!svn/ver/11590/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/MusicalElement.java
+END
+Tuplet.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/6.005/fa11/!svn/ver/14248/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Tuplet.java
+END
+MusicalType.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/6.005/fa11/!svn/ver/11590/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/MusicalType.java
+END
+MusicSequence.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/6.005/fa11/!svn/ver/12640/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/MusicSequence.java
+END
+Music.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/6.005/fa11/!svn/ver/12403/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Music.java
+END
+Chord.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/6.005/fa11/!svn/ver/13221/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Chord.java
+END
+Repeat.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/6.005/fa11/!svn/ver/14248/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Repeat.java
+END
+Accidental.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/6.005/fa11/!svn/ver/13488/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Accidental.java
+END
+KeySignature.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/6.005/fa11/!svn/ver/14248/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/KeySignature.java
+END
+MusicalLength.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/6.005/fa11/!svn/ver/14248/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/MusicalLength.java
+END
+MusicalElementContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/6.005/fa11/!svn/ver/13488/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/MusicalElementContainer.java
+END
+Rest.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/6.005/fa11/!svn/ver/13488/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Rest.java
+END
+Bar.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/6.005/fa11/!svn/ver/13221/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Bar.java
+END
+Note.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/6.005/fa11/!svn/ver/13866/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Note.java
+END
+Voice.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/6.005/fa11/!svn/ver/13221/groups/abcPlayer/achernya-cliu2014-lhs/src/music/ast/Voice.java
+END

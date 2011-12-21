@@ -1,0 +1,217 @@
+\documentclass[12pt]{article}
+
+%% Include packages
+%%\usepackage{times}
+\usepackage[margin=1in,letterpaper,portrait]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage[pdftex]{graphicx}
+\usepackage{listings}
+\usepackage{eucal}
+
+%% Modify these variables
+\newcommand{\student}{Alex Chernyakhovsky, Charles Liu, Lauren Stephens}
+\newcommand{\studentemail}{achernya, cliu2014, lhs}
+\newcommand{\course}{6.005}
+\newcommand{\pset}{Project 1 Design}
+
+%% DO NOT MODIFY THIS SECTION
+
+\fancyhf{}
+\lhead{\course \\ \pset}
+\rhead{\student \\ \studentemail}
+\cfoot{\thepage}
+\addtolength{\headheight}{30pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\pagestyle{fancy}
+
+\newenvironment{problemset}{\begin{itemize}}{\end{itemize}}
+\newenvironment{problem}[1]{\item #1\\}{}
+
+%% END DO NOT MODIFY THIS SECTION
+
+%% PUT MACROS HERE
+\newcommand{\bra}{\left\langle}
+\newcommand{\ket}{\right\rangle}
+%%
+
+\begin{document}
+
+% Set up document title
+\title{\pset}
+\author{\student}
+\date{}
+\maketitle
+\thispagestyle{fancy}
+\
+\section{Grammar}
+\begin{verbatim}
+abc-tune ::= abc-header abc-music
+
+abc-header ::= field-number comment* field-title other-fields* field-key
+        
+field-number ::= "X:" DIGIT+ end-of-line
+field-title ::= "T:" text end-of-line
+other-fields ::= field-composer | field-default-length | field-meter 
+	| field-tempo | field-voice | comment
+field-composer ::= "C:" text end-of-line
+field-default-length ::= "L:" note-length-strict end-of-line
+field-meter ::= "M:" meter end-of-line
+field-tempo ::= "Q:" tempo end-of-line
+field-voice ::= "V:" text end-of-line
+field-key ::= "K:" key end-of-line
+
+key ::= keynote [mode-minor]
+keynote ::= basenote [key-accidental]
+key-accidental ::= "#" | "b"
+mode-minor ::= "m"
+
+meter ::= "C" | "C|" | meter-fraction
+meter-fraction ::= DIGIT+ "/" DIGIT+ 
+
+tempo ::= DIGIT+ 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+abc-music ::= abc-line+
+abc-line ::= (element+ linefeed) | mid-tune-field | comment
+element ::= note-element | tuplet-element | barline | nth-repeat | space 
+
+note-element ::= (note | multi-note)
+
+// note is either a pitch or a rest
+note ::= note-or-rest [note-length]
+note-or-rest ::= pitch | rest
+pitch ::= [accidental] basenote [octave]
+octave ::= ("'"+) | (","+)
+note-length ::= [DIGIT+] ["/" [DIGIT+]]
+note-length-strict ::= DIGIT+ "/" DIGIT+
+
+; "^" is sharp, "_" is flat, and "=" is neutral
+accidental ::= "^" | "^^" | "_" | "__" | "="
+
+basenote ::= "C" | "D" | "E" | "F" | "G" | "A" | "B"
+        | "c" | "d" | "e" | "f" | "g" | "a" | "b"
+
+rest ::= "z"
+
+// tuplets
+tuplet-element ::= tuplet-spec note-element+
+tuplet-spec ::= "(" DIGIT 
+
+// chords
+multi-note ::= "[" note+ "]"
+
+barline ::= "|" | "||" | "[|" | "|]" | ":|" | "|:"
+nth-repeat ::= "[1" | "[2"
+
+; A voice field might reappear in the middle of a piece
+; to indicate the change of a voice
+mid-tune-field ::= field-voice
+
+comment ::= "%" text linefeed
+end-of-line ::= comment | linefeed
+\end{verbatim}
+
+\section{Data Types}
+\subsection{Lexer}
+The first stage of reading the abc file is converting the text data to
+tokens.  This requires the creation of a \texttt{Token} class, which
+will have two fields: type and an optional \texttt{String} data.  The
+following types must exist:
+
+\begin{itemize}
+\item \texttt{FIELD}\\
+  Each field will be given its own value in the enumeration, and the
+  optional data will be filled in. Specifically, these fields exist:
+  \begin{itemize}
+  \item \texttt{FIELD\_INDEX\_NUMBER}
+  \item \texttt{FIELD\_TITLE}
+  \item \texttt{FIELD\_COMPOSER\_NAME}
+  \item \texttt{FIELD\_DEFAULT\_LENGTH}
+  \item \texttt{FIELD\_METER}
+  \item \texttt{FIELD\_TEMPO}
+  \item \texttt{FIELD\_KEY}
+  \item \texttt{FIELD\_VOICE}
+  \end{itemize}
+\item \texttt{DIGIT}\\
+  The digit token will store a single number in the optional data
+  field.
+\item \texttt{NOTE\_LETTER}\\
+  A single note, which will store the actual pitch-letter in the
+  optional data field.
+\item \texttt{ACCIDENTAL}\\
+  A sharp or a flat, with the type stored in the optional data field.
+\item \texttt{BARLINE}\\
+  Signifies the end of a measure, with the optional data field holding
+  the variations.
+\item \texttt{NTH\_REPEAT}\\
+  Variations of the repeat will be stored in the optional data field.
+\item \texttt{MULTINOTE}\\
+  Indicates a sequence of notes is a member of a chord, or that the
+  chord is over. Specifically,
+  \begin{itemize}
+  \item \texttt{BEGIN\_MULTINOTE}
+  \item \texttt{END\_MULTINOTE}
+  \end{itemize}
+\item \texttt{OCTAVE}\\
+  Modifier for the note, either up or down.
+\item \texttt{FRACTION\_BAR}\\
+  A literal fraction bar, ``/''.
+\item \texttt{COMMENT}\\
+  A comment.
+\item \texttt{TUPLET}\\
+  Indicates the beginning of a tuplet, with the optional data
+  containing the size of the tuplet.
+\end{itemize}
+
+\subsection{Parser}
+These tokens will then be combined by the Parser into an Abstract
+Syntax Tree. The root of the tree will be the \texttt{Music} class,
+which has \texttt{Voice}s in it. Each \texttt{Voice} will contain
+\texttt{MusicSequence}s; a \texttt{MusicSequence} is either a
+\texttt{Bar} or \texttt{Repeat}. A \texttt{Repeat} will have 1 or more
+\texttt{Bar}s. \texttt{Bar}s will contain \texttt{Accidental}s and
+\texttt{Note}s.
+
+\begin{align*}
+  Music&::=Map<String, Voice>\\
+  Voice&::=List<MusicSequence>\\
+  MusicSequence&::=Bar() + Repeat()\\
+  Repeat&::=List<Bar>\\
+  Bar&::=List<MusicalElement>\\
+  MusicalElement&::=Accidental(pitch: Pitch, value: int) \\
+  &+ Note(pitch: Pitch, len: MusicalLength(num: int, denom: int)\\
+   &+ Chord()\\
+  Chord&::=List<Note>\\
+\end{align*}
+
+\section{Traversing the Abstract Syntax Tree}
+The AST will be traversed using the Visitor pattern. The Visitor will
+go through each level of the tree, applying correct transformations,
+until it reaches a \texttt{Note}, at which point the \texttt{Note}
+will be added to the SequencePlayer.
+
+\section{State Machines}
+\subsection{Parser}
+The parser needs to maintain knowledge about the current parsing of
+repeats, so that it knows if the current bar is alone or a member of
+the repeat, or even ending the repeat. The parser must also calculate
+the Least Common Multiple of the denominators of note length, so that
+the minimal tick can be calculated.
+
+\subsection{PlayMusicVisitor}
+This Visitor must maintain the state of the accidentals in the
+\texttt{Bar}. This state variable is cleared out whenever a new
+\texttt{Bar} is entered.
+
+\section{Snapshot Diagrams}
+Snapshot diagrams are too large to include in this document. Please
+see the diagram files in the same folder as this document.
+
+\end{document}
+
